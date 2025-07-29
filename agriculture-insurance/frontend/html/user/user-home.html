@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="../../css/user-home.css">
+</head>
+<body onload="checkLogin()">
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo-container">
+            <img src="../../assets/logo.png" alt="Logo" class="logo">
+            <h1>Agricultural Insurance Claim System</h1>
+        </div>
+        <div class="menu-icon">&#9776;</div> <!-- Menu Icon -->
+    </header>
+
+    <!-- User Home Title -->
+    <h2 class="dashboard-title">User Home</h2>
+
+    <!-- Dashboard Buttons -->
+    <main class="card-container">
+        <div class="card" onclick="location.href='apply_insurance.html'"> 
+            <img src="../../assets/apply_insurance.jpg" alt="Apply Insurance">
+            <p>Apply Insurance</p>
+        </div>
+
+        <div class="card" onclick="location.href='user-status.html'">
+            <img src="../../assets/myapplication_envelope.png" alt="Check Status">
+            <p>My Application</p>
+        </div>
+
+        <div class="card" onclick="location.href='user-profile.html'">
+            <img src="../../assets/my_profile.png" alt="View Profile">
+            <p>My Profile</p>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <div class="nav-item" onclick="location.href='user-dashboard.html'">
+            <img src="../../assets/Home_logo.jpg" alt="Home Icon">
+            <p>Home</p>
+        </div>
+        <div class="nav-item" onclick="logout()">
+            <img src="../../assets/logout.png" alt="Logout Icon">
+            <p>Logout</p>
+        </div>
+    </nav>
+
+    <!-- Scripts -->
+    <script>
+        function logout() {
+            localStorage.removeItem("userToken"); 
+            localStorage.removeItem("userData"); 
+            window.location.href = "user-login.html";
+        }
+
+        function checkLogin() {
+            const userToken = localStorage.getItem("userToken");
+            if (!userToken) {
+                window.location.href = "user-login.html";
+            }
+        }
+    </script>
+
+</body>
+</html>
