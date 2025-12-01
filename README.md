@@ -1,5 +1,3 @@
-# agriculture-claim-insurance-system
-
 # Agriculture Claim Insurance System
 
 ``` markdown
