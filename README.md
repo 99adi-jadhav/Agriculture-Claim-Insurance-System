@@ -154,7 +154,7 @@ spring.jpa.hibernate.ddl-auto=update
 ## Clone the repository:
 
 ``` bash
-git clone https://github.com/99-adijadhav/agriculture-claim-insurance-system.git
+git clone https://github.com/99adi-jadhav/agriculture-claim-insurance-system.git
 ```
 
 ## Build the backend using Maven
