@@ -1,79 +1,97 @@
-# Agriculture Claim Insurance System
+🌾 Agriculture Claim Insurance System
+📌 Overview
 
-## Overview
-The **Agriculture Claim Insurance System** is designed to facilitate farmers and insurers in managing insurance claims efficiently.
-The system allows users to submit, process, and track claims seamlessly through a web-based interface.
+The Agriculture Claim Insurance System is a web-based application designed to help farmers and insurance administrators manage crop insurance claims efficiently.
+The platform enables users to submit claims, upload documents, track status, while admins can verify and approve those claims.
 
-## Project Structure
-
+📁 Project Structure
 /agriculture-claim-insurance-system
-│-- /frontend        # Contains HTML, CSS, and JavaScript files
-│-- /backend         # Contains Node.js (Express.js) server-side code
-│-- /database        # MongoDB for database setup
+│-- /frontend        # HTML, CSS, JavaScript (No React)
+│-- /backend         # Java Spring Boot backend
+│-- /database        # SQL scripts & DB configuration
 
-## Technologies Used
-- Frontend: HTML, CSS, JavaScript (without React)
-- Backend: Node.js with Express.js
-- Database: MongoDB (MongoDB Compass for GUI management)
+🛠 Technologies Used
+Frontend
 
-## Features
-- Users can submit insurance claims online.
-- Secure authentication for users and administrators.
-- MongoDB used for data storage and management.
+HTML5
+CSS3
+JavaScript (Vanilla JS)
 
-## Prerequisites
-Ensure you have the following installed before setting up the project:
+Backend
+Java 17+
+Spring Boot
+Maven
+Database
+MySQL
 
-### Development Tools:
-- VS Code (for code editing)
-- MongoDB Compass (for database management)
+⭐ Key Features
 
-### Installation Requirements:
-- Node.js (for running the backend server)
-- MongoDB (for database setup)
-- MongoDB Compass (optional, for GUI-based database management)
-- Express.js (for building the backend API)
+✔ User registration and login
+✔ Secure authentication for users & admins
+✔ Claim submission with document upload
+✔ Admin dashboard for claim approval/rejection
+✔ Claim status tracking (Pending, Verified, Approved, Rejected)
+✔ MySQL database integration
 
-## Setting Up the Database
-1. Open MongoDB Compass or use the terminal.
-2. Create a new database named `agriculture_claim_insurance_system`.
-3. Ensure MongoDB is running and accessible.
+📌 Prerequisites
+Software Requirements
 
-## Running the Application
-### Backend Setup
-1. Navigate to the backend folder:
-   
-   cd backend/
-   
-2. Install dependencies:
-   
-   npm install
-   
-3. Configure your .env file with MongoDB connection details.
-4. Start the backend server:
-   
-   node server.js
-   
-
-### Frontend Setup
-1. Navigate to the frontend folder:
-   
-   cd frontend/
-   
-2. Start a local server using:
-   
-   npx http-server
-   
-
-### Database Setup
-1. Open the terminal and run:
-   mongosh
-   
-   OR
-   
-2. Open MongoDB Compass and establish a connection.
+VS Code / IntelliJ / Eclipse
+MySQL Server & Workbench
+Java 17 
+Maven installed
 
 
-## References
-- ChatGPT AI Tool
-- Youtube Video : https://youtu.be/ItRXMRnUmNE?si=vsDa36HR_Bmm8VJE
+
+🗄 Database Setup
+
+Start MySQL server.
+Create a new database:
+CREATE DATABASE agriculture_insurance;
+
+
+Update your Spring Boot application.properties:
+
+spring.datasource.url=jdbc:mysql://localhost:3306/agriculture_insurance
+spring.datasource.username=root
+spring.datasource.password=your_password
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+🚀 How to Run the Application
+🔹 Backend Setup (Spring Boot)
+
+Open terminal and navigate to backend:
+
+cd backend/
+
+
+Build the project:
+
+mvn clean install
+
+
+Run the server:
+
+java -jar target/insurance-backend-0.0.1-SNAPSHOT.jar
+
+🔹 Frontend Setup
+
+Open terminal and navigate to frontend:
+
+cd frontend/
+
+
+Start a local development server:
+npx http-server
+
+Open the provided URL in your browser (usually http://127.0.0.1:8080)
+
+
+
+📚 References
+
+ChatGPT AI Assistant
+
+YouTube Tutorial: Agriculture Claim System
+https:/youtu.be/ItRXMRnUmNE?si=vsDa36HR_Bmm8VJE
