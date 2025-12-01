@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="../../css/admin_login.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <img src="../../assets/officerlogo.png" alt="User Icon" class="user-icon">
+            <h2>Admin Login</h2>
+            <form action="admin_home_page.html" method="post" id="loginForm">
+                <div class="input-group">
+                    <span class="icon">📧</span>
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="icon">🔒</span>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <br>
+                <div>
+                    <input class="form-check-input" id="inputRememberPassword" type="checkbox">
+                    <label for="inputRememberPassword">Remember Password</label>
+                </div>
+                <button type="submit">Log In</button>
+            </form>
+            <br>
+            <p>Didn't have an account? <a href="admin_register.html">Register Now</a></p>
+        </div>
+    </div>
+    <script src="/js/admin_login.js"></script> <!-- Corrected Path -->
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Applications</title>
+    <link rel="stylesheet" href="../../css/view_application.css">
+</head>
+<body>
+    <header>
+        <h1>Applications</h1>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Application ID</th>
+                    <th>Applicant Name</th>
+                    <th>Status</th>
+                    <th>Date Submitted</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="applicationTableBody">
+                <!-- Applications will be populated here -->
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2023 Agriculture Insurance</p>
+    </footer>
+    <script>
+        async function fetchApplications() {
+            try {
+                const response = await fetch("http://localhost:5000/api/officer/applications");
+                const applications = await response.json();
+                const tbody = document.getElementById("applicationTableBody");
+                tbody.innerHTML = "";
+                applications.forEach(application => {
+                    const row = `<tr>
+                        <td>${application._id}</td>
+                        <td>${application.farmerName}</td>
+                        <td class="status-${application.status.toLowerCase()}">${application.status}</td>
+                        <td>${new Date(application.createdAt).toLocaleDateString()}</td>
+                        <td>
+                            <button class="approve-btn" onclick="approveApplication('${application._id}')">Approve</button>
+                            <button class="reject-btn" onclick="rejectApplication('${application._id}')">Reject</button>
+                        </td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                });
+            } catch (error) {
+                console.error("Failed to fetch applications:", error);
+            }
+        }
+
+        async function approveApplication(id) {
+            if (confirm("Are you sure you want to approve this application?")) {
+                try {
+                    const response = await fetch(`http://localhost:5000/api/officer/applications/${id}/approve`, {
+                        method: 'PUT'
+                    });
+                    if (response.ok) {
+                        alert("Application approved successfully");
+                        fetchApplications(); // Refresh the table
+                    } else {
+                        alert("Failed to approve application");
+                    }
+                } catch (error) {
+                    console.error("Error approving application:", error);
+                }
+            }
+        }
+
+        async function rejectApplication(id) {
+            if (confirm("Are you sure you want to reject this application?")) {
+                try {
+                    const response = await fetch(`http://localhost:5000/api/officer/applications/${id}/reject`, {
+                        method: 'PUT'
+                    });
+                    if (response.ok) {
+                        alert("Application rejected successfully");
+                        fetchApplications(); // Refresh the table
+                    } else {
+                        alert("Failed to reject application");
+                    }
+                } catch (error) {
+                    console.error("Error rejecting application:", error);
+                }
+            }
+        }
+
+        window.onload = fetchApplications;
+    </script>
+</body>
+</html>

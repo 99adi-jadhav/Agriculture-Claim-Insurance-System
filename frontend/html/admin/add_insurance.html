@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Insurance - Admin Panel</title>
+    <link rel="stylesheet" href="../../css/add_insurance.css">
+    <script src="../../js/add_insurance.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Insurance Policy</h1>
+        <form id="insuranceForm">
+            <div class="form-group">
+                <label for="policyName">Policy Name:</label>
+                <input type="text" id="policyName" name="policyName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cropType">Crop Type:</label>
+                <select id="cropType" name="cropType" required>
+                    <option value="">Select Crop Type</option>
+                    <option value="rice">Rice</option>
+                    <option value="wheat">Wheat</option>
+                    <option value="cotton">Cotton</option>
+                    <option value="sugarcane">Sugarcane</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="coverage">Coverage Amount:</label>
+                <input type="number" id="coverage" name="coverage" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="premium">Premium Amount:</label>
+                <input type="number" id="premium" name="premium" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Policy Description:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+
+            <button type="submit">Add Insurance Policy</button>
+        </form>
+    </div>
+</body>
+</html>

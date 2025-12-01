@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Feedback</title>
+    <link rel="stylesheet" href="../../css/submit_feedback.css">
+</head>
+<body>
+    <h1>Submit Feedback</h1>
+
+    <form id="feedbackForm">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="feedback">Feedback:</label><br>
+        <textarea id="feedback" name="feedback" rows="4" required></textarea><br><br>
+
+        <input type="submit" value="Submit Feedback">
+    </form>
+
+    <script>
+        document.getElementById("feedbackForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const feedbackData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                feedback: document.getElementById("feedback").value
+            };
+
+            try {
+                const response = await fetch("http://localhost:5000/api/users/feedback/submit", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(feedbackData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert(data.message || "Feedback submitted successfully!");
+                    document.getElementById("feedbackForm").reset();
+
+                    // ✅ Redirect to user home after success
+                    window.location.href = "user-home.html";
+                } else {
+                    alert(data.message || "Failed to submit feedback.");
+                }
+
+            } catch (error) {
+                alert("Failed to submit feedback. Please try again.");
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+</html>

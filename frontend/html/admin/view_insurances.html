@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Insurances</title>
+    <link rel="stylesheet" href="../../css/apply_insurance.css">
+</head>
+<body>
+    <header>
+        <h1>Insurance Policies</h1>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Policy Name</th>
+                    <th>Crop Type</th>
+                    <th>Coverage</th>
+                    <th>Premium</th>
+                    <th>Duration</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="insuranceTableBody">
+                <!-- Insurance records will be populated here -->
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2023 Agriculture Insurance</p>
+    </footer>
+    <script>
+        async function fetchInsurances() {
+            try {
+                const response = await fetch("http://localhost:5000/api/admin/insurance");
+                const insurances = await response.json();
+                const tbody = document.getElementById("insuranceTableBody");
+                tbody.innerHTML = "";
+                insurances.forEach(insurance => {
+                    const row = `<tr>
+                        <td>${insurance.policyName}</td>
+                        <td>${insurance.cropType}</td>
+                        <td>${insurance.coverage}</td>
+                        <td>${insurance.premium}</td>
+                        <td>${insurance.duration}</td>
+                        <td>${insurance.description}</td>
+                        <td>
+                            <button class="edit-btn" onclick="editInsurance('${insurance._id}')">Edit</button>
+                            <button class="delete-btn" onclick="deleteInsurance('${insurance._id}')">Delete</button>
+                        </td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                });
+            } catch (error) {
+                console.error("Failed to fetch insurances:", error);
+            }
+        }
+        async function editInsurance(id) {
+            // For simplicity, redirect to an edit page or open a modal
+            // Assuming there's an edit page like edit_insurance.html
+            window.location.href = `edit_insurance.html?id=${id}`;
+        }
+
+        async function deleteInsurance(id) {
+            if (confirm("Are you sure you want to delete this insurance policy?")) {
+                try {
+                    const response = await fetch(`http://localhost:5000/api/admin/insurance/${id}`, {
+                        method: 'DELETE'
+                    });
+                    if (response.ok) {
+                        alert("Insurance deleted successfully");
+                        fetchInsurances(); // Refresh the table
+                    } else {
+                        alert("Failed to delete insurance");
+                    }
+                } catch (error) {
+                    console.error("Error deleting insurance:", error);
+                    alert("Error deleting insurance");
+                }
+            }
+        }
+
+        window.onload = fetchInsurances;
+    </script>
+</body>
+</html>

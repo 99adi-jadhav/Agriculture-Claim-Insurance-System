@@ -1,0 +1,68 @@
+/* ===== Back Button - Enhanced Styling ===== */
+.back-button {
+    --green1: #43a047;
+    --green2: #2e7d32;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+    color: #fff;
+
+    background: linear-gradient(135deg, var(--green1) 0%, var(--green2) 100%);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 8px 20px rgba(46,125,50,0.18), inset 0 -3px 0 rgba(0,0,0,0.08);
+
+    transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+    will-change: transform;
+    cursor: pointer;
+}
+
+/* Decorative icon on the left */
+.back-button::before {
+    content: "←";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.10);
+    color: rgba(255,255,255,0.95);
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+    transition: transform 180ms ease, background 180ms ease;
+}
+
+/* Hover / focus / active interactions */
+.back-button:hover,
+.back-button:focus {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 18px 40px rgba(46,125,50,0.22);
+    filter: brightness(1.03);
+    text-decoration: none;
+    outline: none;
+}
+
+.back-button:hover::before,
+.back-button:focus::before {
+    transform: translateX(-4px);
+    background: rgba(255,255,255,0.16);
+}
+
+.back-button:active {
+    transform: translateY(-1px) scale(0.99);
+    box-shadow: 0 6px 14px rgba(46,125,50,0.18);
+}
+
+/* Accessible focus ring for keyboard users */
+.back-button:focus-visible {
+    outline: 3px solid rgba(67,160,71,0.18);
+    outline-offset: 4px;
+}

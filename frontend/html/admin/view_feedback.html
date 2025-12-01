@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/view_feedback.css">
+    <title>View Feedback</title>
+</head>
+<body>
+    <header>
+        <h1>Feedback Overview</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Feedback List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Feedback</th>
+                        <th>Rating</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="feedbackTableBody">
+                    <!-- Feedback entries will be populated here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Agriculture Insurance</p>
+    </footer>
+    <script>
+        async function fetchFeedback() {
+            try {
+                const response = await fetch("http://localhost:5000/api/admin/feedback");
+                const feedbacks = await response.json();
+                const tbody = document.getElementById("feedbackTableBody");
+                tbody.innerHTML = "";
+                feedbacks.forEach(fb => {
+                    const row = `<tr>
+                        <td>${fb._id}</td>
+                        <td>${fb.userId ? fb.userId.name : 'Anonymous'}</td>
+                        <td>${fb.userId ? fb.userId.email : 'N/A'}</td>
+                        <td>${fb.message}</td>
+                        <td>${fb.rating}</td>
+                        <td>${new Date(fb.createdAt).toLocaleDateString()}</td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                });
+            } catch (error) {
+                console.error("Failed to fetch feedback:", error);
+            }
+        }
+        window.onload = fetchFeedback;
+    </script>
+</body>
+</html>

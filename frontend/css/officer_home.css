@@ -1,0 +1,126 @@
+/* ✅ General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #dde4f5;
+}
+
+/* ✅ Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* ✅ Officer Home Title */
+h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #1d2b53;
+    margin-top: 20px;
+}
+
+/* ✅ Center Content Section */
+.dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    width: 100%;
+}
+
+/* ✅ Card Box - Perfectly Centered */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 260px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   /* Vertical center */
+    align-items: center;       /* Horizontal center */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ Card Icon */
+.card img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 12px;
+}
+
+/* ✅ Card Text */
+.card p {
+    font-size: 18px;
+    color: #1d2b53;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* ✅ Bottom Navigation Bar */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Navigation Items */
+.nav-item {
+    text-align: center;
+    cursor: pointer;
+    padding: 5px 0;
+    transition: transform 0.2s ease-in-out;
+}
+
+.nav-item:hover {
+    transform: scale(1.1);
+}
+
+/* ✅ Bottom Icons */
+.nav-item img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 5px;
+}
+
+/* ✅ Bottom Navigation Text */
+.nav-item p {
+    margin: 0;
+    font-size: 14px;
+    color: #1d2b53;
+    font-weight: bold;
+}

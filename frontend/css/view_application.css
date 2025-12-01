@@ -1,0 +1,187 @@
+/* ===============================
+   Global Layout
+================================= */
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #dde4f5 0%, #c8d4f0 100%);
+  color: #1d2b53;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ===============================
+   Header
+================================= */
+header {
+  text-align: center;
+  padding: 40px 20px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid #e0e6ff;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1d2b53;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ===============================
+   Main Content
+================================= */
+main {
+  flex: 1;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   Table Styling
+================================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e6ff;
+}
+
+thead {
+  background: linear-gradient(135deg, #1d2b53 0%, #2a3d66 100%);
+  color: #ffffff;
+}
+
+th, td {
+  padding: 15px 20px;
+  text-align: left;
+  border-bottom: 1px solid #e0e6ff;
+}
+
+th {
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+td {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+tbody tr:hover {
+  background-color: #f8f9ff;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f1f3fa;
+}
+
+tbody tr:nth-child(even):hover {
+  background-color: #e8ecff;
+}
+
+/* ===============================
+   Footer
+================================= */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #ffffff;
+  color: #666;
+  border-top: 2px solid #e0e6ff;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ===============================
+   Button Styling
+================================= */
+.edit-btn, .delete-btn {
+  padding: 8px 12px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #45a049;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #da190b;
+}
+
+/* ===============================
+   Responsive Adjustments
+================================= */
+@media (max-width: 768px) {
+  header {
+    padding: 30px 15px;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  main {
+    padding: 20px 10px;
+  }
+
+  table {
+    font-size: 0.85rem;
+  }
+
+  th, td {
+    padding: 10px 12px;
+  }
+
+  .edit-btn, .delete-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  /* Make table scrollable on small screens */
+  main {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 600px;
+  }
+}

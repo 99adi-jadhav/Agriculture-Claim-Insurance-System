@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Locations</title>
+ <link rel="stylesheet" href="../../css/add_location.css">
+
+</head>
+<body>
+    <header>
+        <h1>View Locations</h1>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Location ID</th>
+                    <th>Location Name</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="locationsTableBody">
+                <!-- Location data will be populated here -->
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2023 Agriculture Insurance</p>
+    </footer>
+    <script>
+        async function fetchLocations() {
+            try {
+                const response = await fetch("http://localhost:5000/api/admin/locations");
+                const locations = await response.json();
+                const tbody = document.getElementById("locationsTableBody");
+                tbody.innerHTML = "";
+                locations.forEach(loc => {
+                    const row = `<tr>
+                        <td>${loc._id}</td>
+                        <td>${loc.name}</td>
+                        <td>${loc.latitude}</td>
+                        <td>${loc.longitude}</td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                });
+            } catch (error) {
+                console.error("Failed to fetch locations:", error);
+            }
+        }
+        window.onload = fetchLocations;
+    </script>
+</body>
+</html>

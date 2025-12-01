@@ -1,0 +1,92 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e6e6fa; /* Light purple background */
+    text-align: center;
+    margin: 0;
+}
+
+/* Header */
+header {
+    background-color: white;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    height: 40px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+/* Main Content */
+.container {
+    padding: 20px;
+}
+
+.banner-img {
+    width: 80%;
+    max-width: 800px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+button {
+    background-color: #4b0082; /* Dark purple */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #5a0090;
+}
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #eef2e6;
+}
+
+header {
+    background-color: #4CAF50;
+    padding: 15px;
+    color: white;
+    font-size: 20px;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.button-container button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.form-container {
+    width: 300px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}

@@ -1,0 +1,206 @@
+/* ===============================
+   Global Layout
+================================= */
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #dde4f5 0%, #c8d4f0 100%);
+  color: #1d2b53;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===============================
+   Header
+================================= */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 2px solid #e0e6ff;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+.logo h1 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1d2b53;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* ===============================
+   Page Title
+================================= */
+.page-title {
+  text-align: center;
+  margin: 40px 0 30px;
+}
+
+.page-title h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1d2b53;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ===============================
+   Dashboard Grid
+================================= */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 30px 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  justify-items: center;
+}
+
+/* ===============================
+   Card Styling
+================================= */
+.card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
+  border-radius: 20px;
+  text-align: center;
+  padding: 30px 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  cursor: pointer;
+  max-width: 280px;
+  border: 1px solid #e0e6ff;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(145deg, #f1f3fa 0%, #e8ecff 100%);
+}
+
+.card img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.card p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1d2b53;
+  margin: 0;
+}
+
+/* ===============================
+   Bottom Navigation
+================================= */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px 0;
+  z-index: 999;
+  border-top: 2px solid #e0e6ff;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.nav-item:hover {
+  transform: scale(1.1);
+  background-color: #f1f3fa;
+}
+
+.nav-item span {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+.nav-item p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1d2b53;
+  margin: 0;
+}
+
+/* ===============================
+   Responsive Adjustments
+================================= */
+@media (max-width: 768px) {
+  .topbar {
+    padding: 10px 20px;
+  }
+
+  .logo h1 {
+    font-size: 1rem;
+  }
+
+  .dashboard {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 20px 20px;
+  }
+
+  .card {
+    max-width: none;
+    padding: 25px 15px;
+  }
+
+  .card img {
+    width: 65px;
+    height: 65px;
+  }
+
+  .page-title h2 {
+    font-size: 1.6rem;
+  }
+
+  .bottom-nav {
+    padding: 12px 0;
+  }
+
+  .nav-item span {
+    font-size: 1.3rem;
+  }
+
+  .nav-item p {
+    font-size: 0.8rem;
+  }
+}

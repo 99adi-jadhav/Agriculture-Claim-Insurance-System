@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Admin — Add Location</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden><rect width="24" height="24" rx="6" fill="#0b61d6"/></svg>
+            <h1>Add Location</h1>
+        </header>
+
+        <main class="card" role="main">
+            <form method="post" action="/admin/locations/add" autocomplete="off" novalidate>
+                <div class="full">
+                    <label for="location_name">Location name</label>
+                    <input id="location_name" name="location_name" type="text" placeholder="e.g., North Farm Cluster" required />
+                </div>
+
+                <div>
+                    <label for="state">State</label>
+                    <input id="state" name="state" list="states" type="text" placeholder="Select or type state" required />
+                    <datalist id="states">
+                        <option value="Karnataka"></option>
+                        <option value="Maharashtra"></option>
+                        <option value="Tamil Nadu"></option>
+                        <option value="Andhra Pradesh"></option>
+                        <option value="Uttar Pradesh"></option>
+                    </datalist>
+                </div>
+
+                <div>
+                    <label for="district">District</label>
+                    <input id="district" name="district" type="text" placeholder="District" required />
+                </div>
+
+                <div>
+                    <label for="taluk">Taluk / Tehsil</label>
+                    <input id="taluk" name="taluk" type="text" placeholder="Taluk or Tehsil" />
+                </div>
+
+                <div>
+                    <label for="village">Village / Locality</label>
+                    <input id="village" name="village" type="text" placeholder="Village or Locality" />
+                </div>
+
+                <div>
+                    <label for="pincode">Pincode / ZIP</label>
+                    <input id="pincode" name="pincode" type="text" inputmode="numeric" pattern="^\d{6}$" placeholder="6-digit pincode" />
+                    <div class="hint">Enter 6-digit pincode (if applicable)</div>
+                </div>
+
+                <div>
+                    <label for="latitude">Latitude</label>
+                    <input id="latitude" name="latitude" type="text" pattern="^-?\d+(\.\d+)?$" placeholder="e.g., 12.9716" />
+                </div>
+
+                <div>
+                    <label for="longitude">Longitude</label>
+                    <input id="longitude" name="longitude" type="text" pattern="^-?\d+(\.\d+)?$" placeholder="e.g., 77.5946" />
+                </div>
+
+                <div>
+                    <label for="risk_zone">Risk Zone</label>
+                    <select id="risk_zone" name="risk_zone" aria-label="Risk zone">
+                        <option value="">Select risk zone</option>
+                        <option value="low">Low</option>
+                        <option value="moderate">Moderate</option>
+                        <option value="high">High</option>
+                        <option value="very_high">Very high</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="coverage">Insurance coverage categories</label>
+                    <select id="coverage" name="coverage[]" multiple size="3" aria-label="Coverage categories">
+                        <option value="crop">Crop</option>
+                        <option value="livestock">Livestock</option>
+                        <option value="weather">Weather</option>
+                    </select>
+                    <div class="hint">Hold Ctrl (Windows) or Cmd (Mac) to select multiple</div>
+                </div>
+
+                <div class="full">
+                    <label for="notes">Notes / Description</label>
+                    <textarea id="notes" name="notes" placeholder="Optional additional details"></textarea>
+                </div>
+
+                <div class="full actions" aria-hidden="false">
+                    <button type="button" class="btn-secondary" onclick="history.back()">Cancel</button>
+                    <button type="submit" class="btn-primary">Create location</button>
+                </div>
+            </form>
+        </main>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById("location_name").value.trim();
+                const latitude = parseFloat(document.getElementById("latitude").value.trim());
+                const longitude = parseFloat(document.getElementById("longitude").value.trim());
+
+                if (!name || isNaN(latitude) || isNaN(longitude)) {
+                    alert("Please fill in location name, latitude, and longitude with valid data.");
+                    return;
+                }
+
+                try {
+                    const response = await fetch("http://localhost:5000/api/admin/location/add", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ name, latitude, longitude }),
+                    });
+
+                    const data = await response.json();
+                    if (response.ok) {
+                        alert("Location added successfully!");
+                        form.reset();
+                    } else {
+                        alert("Error: " + (data.message || "Failed to add location."));
+                    }
+                } catch (error) {
+                    console.error("Add location error:", error);
+                    alert("Failed to add location. Please try again.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

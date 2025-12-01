@@ -1,0 +1,162 @@
+<style>
+    /* Styles for "My Applications" section */
+    .applications-container {
+        max-width: 1000px;
+        margin: 20px auto;
+        background: #f9f9f9;
+        /* Light background for agriculture theme */
+        border-radius: 6px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        color: #2c3e50;
+        /* Darker text for better readability */
+    }
+
+    .controls {
+        display: flex;
+        gap: 8px;
+    }
+
+    button {
+        background: #27ae60;
+        color: #fff;
+        border: 0;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    /* Green button for agriculture */
+    button.secondary {
+        background: #95a5a6;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+    }
+
+    th,
+    td {
+        padding: 10px 8px;
+        border-bottom: 1px solid #e6e9ef;
+        text-align: left;
+    }
+
+    th {
+        background: #ecf0f1;
+        font-weight: 700;
+    }
+
+    .status-approved {
+        color: #27ae60;
+        font-weight: 600;
+    }
+
+    /* Green for approved */
+    .status-pending {
+        color: #f39c12;
+        font-weight: 600;
+    }
+
+    /* Orange for pending */
+    .status-rejected {
+        color: #e74c3c;
+        font-weight: 600;
+    }
+
+    /* Red for rejected */
+    .empty-row td {
+        text-align: center;
+        padding: 16px;
+        color: #7f8c8d;
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+
+<section id="section-applications" class="applications-container">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h2 style="margin:0">User Application List</h2>
+        <div class="controls">
+            <button id="btn-apply-new">Apply New</button>
+            <button id="btn-refresh" class="secondary">Refresh</button>
+        </div>
+    </div>
+
+    <table aria-label="Applications table">
+        <thead>
+            <tr>
+                <th>Application ID</th>
+                <th>Application Name</th>
+                <th>Status</th>
+                <th>Date Submitted</th>
+            </tr>
+        </thead>
+        <tbody id="applications-tbody">
+            <tr class="empty-row">
+                <td colspan="4">No applications found. Click "Apply New" to submit an application.</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<script>
+    let applications = [];
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const userToken = localStorage.getItem("userToken");
+        if (!userToken) {
+            alert("You must be logged in to view applications.");
+            window.location.href = "user-login.html";
+            return;
+        }
+        fetchApplications();
+    });
+
+    document.getElementById('btn-apply-new').addEventListener('click', function () {
+        window.location.href = 'user-apply.html';
+    });
+
+    document.getElementById('btn-refresh').addEventListener('click', function () {
+        fetchApplications();
+    });
+
+    async function fetchApplications() {
+        const userId = localStorage.getItem("userId");
+        try {
+            const response = await fetch(`http://localhost:5000/api/users/applications?userId=${userId}`, {
+                method: "GET"
+            });
+            const apps = await response.json();
+            applications = apps;
+            renderApplications();
+        } catch (error) {
+            console.error("Failed to fetch applications:", error);
+            alert("Failed to load applications.");
+        }
+    }
+
+    function renderApplications() {
+        const tbody = document.getElementById('applications-tbody');
+        tbody.innerHTML = ''; // Clear existing rows
+
+        if (applications.length === 0) {
+            tbody.innerHTML = '<tr class="empty-row"><td colspan="4">No applications found. Click "Apply New" to submit an application.</td></tr>';
+        } else {
+            applications.forEach(app => {
+                const row = `<tr>
+                <td>${app.id}</td>
+                <td>${app.farmerName}</td>
+                <td class="status-${app.status.toLowerCase()}">${app.status}</td>
+                <td>${new Date(app.createdAt).toLocaleDateString()}</td>
+            </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+    }
+</script>

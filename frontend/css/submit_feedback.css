@@ -1,0 +1,130 @@
+/* ===============================
+   Global Layout
+================================= */
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #dde4f5 0%, #c8d4f0 100%);
+  color: #1d2b53;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  line-height: 1.6;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===============================
+   Header
+================================= */
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1d2b53;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* ===============================
+   Form Styling
+================================= */
+form {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e6ff;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1d2b53;
+  font-size: 1rem;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e0e6ff;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #1d2b53;
+  box-shadow: 0 0 8px rgba(29, 43, 83, 0.2);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+input[type="submit"] {
+  background: linear-gradient(135deg, #1d2b53 0%, #2a3d66 100%);
+  color: #ffffff;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+input[type="submit"]:hover {
+  background: linear-gradient(135deg, #2a3d66 0%, #1d2b53 100%);
+  transform: translateY(-2px);
+}
+
+input[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* ===============================
+   Responsive Adjustments
+================================= */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  form {
+    padding: 30px 20px;
+    margin: 20px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
+
+  input[type="submit"] {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+}
